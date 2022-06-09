@@ -9,6 +9,7 @@ const schemaRegister = Joi.object({
     name: Joi.string().min(6).max(255).required(),
     email: Joi.string().min(6).max(255).required().email(),
     password: Joi.string().min(6).max(1024).required(),
+    telephone: Joi.string().min(6).max(1024),
 })
 
 router.post('/register', async (req, res) => {
@@ -32,6 +33,16 @@ try{
         )
     }
 
+    const isPhonelExist = await User.findOne({
+        email: req.body.telephone
+    })
+
+    if( isPhonelExist ){
+        return res.status(400).json(
+            {error: 'Telefono ya existe'}
+        )
+    }
+
     //Hash de la Contraseña
     //const salt = await bcrypt.genSalt(10)
     //const password =  await bcrypt.hash(req.body.password, salt)
@@ -39,7 +50,8 @@ try{
     const user = new User ({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        telephone: req.body.telephone
     })
 
     try{
