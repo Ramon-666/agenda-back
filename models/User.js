@@ -18,6 +18,10 @@ const userSchema = mongoose.Schema({
         required: true,
         minLength: 6,
     },
+    telephone: {
+        type: String,
+        min: 10,
+    },
     date: {
         type: Date,
         default: Date.now
