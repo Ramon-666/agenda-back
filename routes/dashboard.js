@@ -10,14 +10,14 @@ router.get('/', (req, res) => {
         }
     })
 })
-
+/*
 //Agregado recientemente
 const schemaNewContact = Joi.object({
     name: Joi.string().min(6).max(255).required(),
     email: Joi.string().min(6).max(255).required().email(),
     telephone: Joi.string().min(6).max(1024),
 })
-/*
+
 router.get('/contacts', async (req, res) => {
     try{
         const { error } =  schemaNewContact.validate(req.body)
