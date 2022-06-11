@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Contact = require('../models/Contact')
+//const Contact = require('../models/Contact')
 
 router.get('/', (req, res) => {
     res.json({
