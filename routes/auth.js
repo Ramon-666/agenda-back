@@ -112,7 +112,7 @@ router.post('/login', async(req, res) => {
             error: null,
             data: {token}
         })
-        res.redirect('/dashboard/')
+        res.redirect('/')
     }catch (error) {
         console.log(error)
     }
