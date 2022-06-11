@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const User =  require('../models/User')
-const Contact = require('../models/Contact')
+//const Contact = require('../models/Contact')
 const Joi = require('@hapi/joi')
 //const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -116,7 +116,7 @@ router.post('/login', async(req, res) => {
     console.log(error)
 }
 })
-
+/*
 //Agregado recientemente
 const schemaNewContact = Joi.object({
     name: Joi.string().min(6).max(255).required(),
@@ -151,6 +151,6 @@ router.post('/contacts', async (req, res) => {
         console.log(error)
     }
 })
-
+*/
 
 module.exports = router
