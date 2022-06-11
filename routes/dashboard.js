@@ -17,6 +17,7 @@ const schemaNewContact = Joi.object({
     email: Joi.string().min(6).max(255).required().email(),
     telephone: Joi.string().min(6).max(1024),
 })
+/*
 router.get('/contacts', async (req, res) => {
     try{
         const { error } =  schemaNewContact.validate(req.body)
@@ -45,5 +46,5 @@ router.get('/contacts', async (req, res) => {
         console.log(error)
     }
 })
-
+*/
 module.exports = router
