@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const User =  require('../models/User')
+const Contact = require('../models/Contact')
 const Joi = require('@hapi/joi')
 //const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -115,5 +116,41 @@ router.post('/login', async(req, res) => {
     console.log(error)
 }
 })
+
+//Agregado recientemente
+const schemaNewContact = Joi.object({
+    name: Joi.string().min(6).max(255).required(),
+    email: Joi.string().min(6).max(255).required().email(),
+    telephone: Joi.string().min(6).max(1024),
+})
+router.post('/contacts', async (req, res) => {
+    try{
+        const { error } =  schemaNewContact.validate(req.body)
+
+        if(error){
+            return res.status(400).json(
+                {error: error.details[0].message}
+            )
+        }
+        const contact = new Contact ({
+            name: req.body.name,
+            email: req.body.email,
+            telephone: req.body.telephone
+        })
+
+        try{
+            const savedContact = await contact.save()
+            res.json({
+                error: null,
+                data: savedContact
+            })
+        } catch(error) {
+            console.log(error)
+        }
+    } catch(error) {
+        console.log(error)
+    }
+})
+
 
 module.exports = router
