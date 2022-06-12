@@ -1,11 +1,6 @@
-import mongoose from 'mongoose'
-import User from mongoose.model('User')
+const mongoose = require('mongoose')
 
-const contactSchema = new Schema({
-    idUser: {
-        type: Schema.ObjectId, 
-        ref: User
-    },
+const contactSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -21,10 +16,6 @@ const contactSchema = new Schema({
     telephone: {
         type: String,
         min: 10,
-    },
-    date: {
-        type: Date,
-        default: Date.now
     }
 })
 

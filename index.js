@@ -4,9 +4,8 @@ const bodyparser = require('body-parser')
 const cors = require('cors')
 
 // Configuracion de Rutas
-const authRoutes = require('./routes/auth')
-const dashboardRoutes = require('./routes/dashboard')
-const verifyToken = require('./routes/validate-token')
+const contactRoutes = require('./routes/Contacts')
+const citaRoutes = require('./routes/Citas')
 
 const corsOptions = {
     origin: "*",
@@ -14,7 +13,7 @@ const corsOptions = {
 }
 const app = express()
 
-const uri = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.anumbr7.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`
+const uri = `mongodb+srv://admin:admin@cluster0.hc2j8ks.mongodb.net/agenda_db?retryWrites=true&w=majority`
              
 const options = {
     useNewUrlParser: true,
@@ -29,8 +28,8 @@ mongoose.connect(uri, options)
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(bodyparser.json())
 app.use(cors(corsOptions))
-app.use('/api/user', authRoutes)
-app.use('/api/dashboard', verifyToken, dashboardRoutes)
+app.use('/api/contact', contactRoutes)
+app.use('/api/cita', citaRoutes)
 app.get('/', (req, res) => {
     res.json({
         estado: true,
