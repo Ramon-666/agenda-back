@@ -13,7 +13,7 @@ const corsOptions = {
 }
 const app = express()
 
-const uri = `mongodb+srv://admin:admin@cluster0.hc2j8ks.mongodb.net/agenda_db?retryWrites=true&w=majority`
+const uri = `mongodb+srv://${process.env.USERNAME}:${process.env.PASSWORD}@cluster0.hc2j8ks.mongodb.net/${process.env.DBNAME}?retryWrites=true&w=majority`
              
 const options = {
     useNewUrlParser: true,
